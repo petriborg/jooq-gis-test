@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="http://www.jooq.org/xsd/jooq-codegen-2.0.4.xsd">
+  <!-- Configure the database connection here -->
+  <jdbc>
+    <driver>org.postgresql.Driver</driver>
+    <url>jdbc:postgresql://lucid:5432/testdb</url>
+    <user>postgres</user>
+    <password></password>
+  </jdbc>
+
+  <generator>
+    <!-- The default code generator. You can override this one, to generate your own code style
+         Defaults to org.jooq.util.DefaultGenerator -->
+    <name>org.jooq.util.DefaultGenerator</name>
+
+    <database>
+      <!-- The database type. The format here is:
+           org.util.[database].[database]Database -->
+      <name>org.jooq.util.postgres.PostgresDatabase</name>
+
+      <!-- The database schema (or in the absence of schema support, in your RDBMS this
+           can be the owner, user, database name) to be generated -->
+      <inputSchema>public</inputSchema>
+
+      <!-- All elements that are generated from your schema (several Java regular expressions, separated by comma)
+           Watch out for case-sensitivity. Depending on your database, this might be important! -->
+      <!--<includes>base,child_b[0-9]</includes>-->
+      <includes>st_intersects</includes>
+
+      <!-- All elements that are excluded from your schema (several Java regular expressions, separated by comma).
+              Excludes match before includes -->
+      <excludes></excludes>
+      
+      <!-- Generate jOOU data types for your unsigned data types, which are
+       not natively supported in Java.
+       Defaults to true -->
+      <unsignedTypes>false</unsignedTypes>
+    </database>
+
+    <generate>
+      <!-- Primary key / foreign key relations should be generated and used.
+           This is a prerequisite for various advanced features.
+           Defaults to true -->
+      <relations>true</relations>
+
+      <!-- Generate navigation methods to navigate foreign key relationships
+           directly from Record classes. This is only relevant if relations
+           is set to true, too.
+           Defaults to true -->
+      <navigationMethods>true</navigationMethods>
+
+      <!-- Generate deprecated code for backwards compatibility
+           Defaults to true -->
+      <deprecated>true</deprecated>
+
+      <!-- Generate instance fields in your tables, as opposed to static
+           fields. This simplifies aliasing.
+           Defaults to true -->
+      <instanceFields>true</instanceFields>
+
+      <!-- Generate the javax.annotation.Generated annotation to indicate
+           jOOQ version used for source code.
+           Defaults to true -->
+      <generatedAnnotation>true</generatedAnnotation>
+
+      <!-- Generate jOOQ Record classes for type-safe querying. You can
+           turn this off, if you don't need "active records" for CRUD
+           Defaults to true -->
+      <records>true</records>
+
+      <!-- Generate POJOs in addition to Record classes for usage of the
+           ResultQuery.fetchInto(Class) API
+           Defaults to false -->
+      <pojos>true</pojos>
+
+      <!-- Generate immutable POJOs for usage of the ResultQuery.fetchInto(Class) API
+           This overrides any value set in <pojos/>
+           Defaults to false -->
+      <immutablePojos>false</immutablePojos>
+
+      <!-- Generate interfaces that will be implemented by records and/or pojos.
+           You can also use these interfaces in Record.into(Class<?>) and
+           similar methods, to let jOOQ return proxy objects for them.
+           Defaults to false -->
+      <interfaces>true</interfaces>
+
+      <!-- Generate DAOs in addition to POJO classes
+           Defaults to false -->
+      <daos>true</daos>
+
+      <!-- Annotate POJOs and Records with JPA annotations for increased
+           compatibility and better integration with JPA/Hibernate, etc
+           Defaults to false -->
+      <jpaAnnotations>true</jpaAnnotations>
+
+      <!-- Annotate POJOs and Records with JSR-303 validation annotations
+           Defaults to false -->
+      <validationAnnotations>false</validationAnnotations>
+    </generate>
+
+    <target>
+      <!-- The destination package of your generated classes (within the destination directory) -->
+      <packageName>gis.generated</packageName>
+
+      <!-- The destination directory of your generated classes -->
+      <directory>src</directory>
+    </target>
+  </generator>
+</configuration>
